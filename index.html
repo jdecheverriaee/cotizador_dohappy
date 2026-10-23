@@ -207,7 +207,7 @@ table.list.prod{min-width:420px}
           <div class="panel-h">
             <div>
               <div class="lbl" id="edMode">Nueva cotización</div>
-              <div class="quote-id num" id="qNum">COT-0233</div>
+              <div class="quote-id num" id="qNum">COT-0001</div>
             </div>
             <span class="hint" id="validTxt"></span>
           </div>
@@ -354,7 +354,8 @@ function calc(q){
   else { neto = base; iva = Math.round(neto * IVA); total = neto + iva; }
   return {lines, sub, dg, neto, iva, total};
 }
-const nextNumero = () => quotes.reduce((m, q) => Math.max(m, q.numero || 0), 0) + 1;
+const NUMERO_INICIAL = Math.max(1, parseInt((window.COTIZADOR_CONFIG || {}).numeroInicial) || 1);
+const nextNumero = () => Math.max(NUMERO_INICIAL, quotes.reduce((m, q) => Math.max(m, q.numero || 0), 0) + 1);
 
 /* ---------- storage: Supabase si está configurado en config.js; si no, este navegador ---------- */
 const CFG = window.COTIZADOR_CONFIG || {};
