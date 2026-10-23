@@ -4,6 +4,6 @@
 // (Supabase → Project Settings → API). La anon key es pública por diseño:
 // los datos quedan protegidos por el login y las políticas RLS de schema.sql.
 window.COTIZADOR_CONFIG = {
-  supabaseUrl: "",
-  supabaseAnonKey: ""
+  supabaseUrl: "https://fasyjacvqgezaxepjgmn.supabase.co/rest/v1/",
+  supabaseAnonKey: "sb_publishable_pYELXIqnoN7rNVUJd5nK7Q_-MQBZ1mB"
 };
