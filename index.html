@@ -358,8 +358,10 @@ const nextNumero = () => quotes.reduce((m, q) => Math.max(m, q.numero || 0), 0) 
 
 /* ---------- storage: Supabase si está configurado en config.js; si no, este navegador ---------- */
 const CFG = window.COTIZADOR_CONFIG || {};
-const sb = (CFG.supabaseUrl && CFG.supabaseAnonKey && window.supabase)
-  ? window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey) : null;
+const SB_URL = String(CFG.supabaseUrl || "").trim().replace(/\/+$/, "").replace(/\/(rest|auth)\/v1$/, "");
+const SB_KEY = String(CFG.supabaseAnonKey || "").trim();
+const sb = (SB_URL && SB_KEY && window.supabase)
+  ? window.supabase.createClient(SB_URL, SB_KEY) : null;
 const store = {
   kind: "pending",
   lsGet(col){ try { return JSON.parse(localStorage.getItem("dohappy_" + col) || "{}"); } catch(e){ return {}; } },
